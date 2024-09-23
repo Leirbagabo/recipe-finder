@@ -1,0 +1,18 @@
+import { Route, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import HomePage from "./Pages/HomePage";
+import FavoritePage from "./Pages/FavoritePage";
+
+function App() {
+  return (
+    <div className="flex">
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/favorites" element={<FavoritePage />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
