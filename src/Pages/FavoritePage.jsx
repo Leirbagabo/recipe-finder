@@ -1,6 +1,6 @@
 import React from "react";
 import RecipeCard from "../components/RecipeCard";
-const fav = false;
+const fav = true;
 
 const FavoritePage = () => {
   return (

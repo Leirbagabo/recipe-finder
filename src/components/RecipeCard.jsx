@@ -1,17 +1,17 @@
 import { Heart, HeartPulse, Soup } from 'lucide-react'
 import React from 'react'
 
-const RecipeCard = () => {
+const RecipeCard = ({recipe}) => {
   return (
     <div className="flex flex-col rounded-md bg-[#ecf7d4] overflow-hidden p-3 relative ">
     <a href="#" className="relative h-32">
       <img
-        src="/1.jpg"
+        src={recipe.image}
         alt="recipe img"
         className="rounded-md w-full h-full object-cover cursor-pointer"
       />
       <div className="absolute bottom-2 left-2 bg-white rounded-full p-1 curso-pinter flex items-center gap-1 text-sm">
-        <Soup size={"16"} />4 servings
+        <Soup size={"16"} />{recipe.yield} servings
       </div>
       <div className="absolute top-1 right-2 bg-white rounded-full p-1 cursor-pointer">
         <Heart
@@ -21,9 +21,9 @@ const RecipeCard = () => {
       </div>
     </a>
     <div className="flex mt-1">
-      <p className="font-bold tracking-wide">roasted chicken</p>
+      <p className="font-bold tracking-wide">{recipe.label}</p>
     </div>
-    <p className="my-2">Turkish Kitchen</p>
+    <p className="my-2">{recipe.cuisineType} Kitchen</p>
     <div className="flex gap-2 mt-auto">
       <div className="flex gap-1 bg-[#d6f497] p-1 rounded-md">
         <HeartPulse size={"16"} />

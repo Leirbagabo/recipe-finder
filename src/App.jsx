@@ -3,6 +3,8 @@ import Sidebar from "./components/Sidebar";
 import HomePage from "./Pages/HomePage";
 import FavoritePage from "./Pages/FavoritePage";
 
+
+
 function App() {
   return (
     <div className="flex">
