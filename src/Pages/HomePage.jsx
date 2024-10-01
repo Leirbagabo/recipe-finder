@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import RecipeCard from "../components/RecipeCard";
+import { getRandomColor } from "../lib/utils";
 
 const APP_ID = "3f6a46b7";
 const APP_KEY = "670d2c3b0f9181f0cbc82bf676560794";
@@ -18,7 +19,7 @@ const HomePage = () => {
       );
       const data = await res.json();
       setRecipes(data.hits);
-      console.log(data);
+      {/*console.log(data);*/}
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -49,7 +50,9 @@ const HomePage = () => {
         </p>
 
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {!loading && recipes.map(({ recipe }, index) => (<RecipeCard key={index} recipe={recipe} />))}
+          {!loading && recipes.map(({ recipe }, index) => (<RecipeCard key={index} recipe={recipe} 
+          {...getRandomColor()}
+          />))}
 
           {loading &&
             [...Array(9)].map((_, index) => (

@@ -1,6 +1,6 @@
 import React from "react";
 import RecipeCard from "../components/RecipeCard";
-const fav = true;
+const favorites=JSON.parse(localStorage.getItem('favorites')) || [];
 
 const FavoritePage = () => {
   return (
