@@ -1,10 +1,10 @@
-import { Search } from "lucide-react";
+import { Import, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import RecipeCard from "../components/RecipeCard";
 import { getRandomColor } from "../lib/utils";
 
-const APP_ID = "3f6a46b7";
-const APP_KEY = "670d2c3b0f9181f0cbc82bf676560794";
+const APP_ID = import.meta.env.VITE_APP_ID
+const APP_KEY = import.meta.env.VITE_APP_KEY
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -19,7 +19,7 @@ const HomePage = () => {
       );
       const data = await res.json();
       setRecipes(data.hits);
-      {/*console.log(data);*/}
+      console.log(data);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -31,10 +31,15 @@ const HomePage = () => {
     fetchRecipes("chicken");
   }, []);
 
+  const handleSearchRecipe= (e)=>{
+    e.preventDefault();
+    fetchRecipes(e.target[0].value)
+  }
+
   return (
     <div className="bg-[#faf9fb] p-10 flex-1">
       <div className="max-w-screen-lg mx-auto">
-        <form>
+        <form onSubmit={handleSearchRecipe}>
           <label htmlFor="" className="input shadow-md flex items-center gap-2">
             <Search size={"24"} />
             <input
@@ -50,9 +55,10 @@ const HomePage = () => {
         </p>
 
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {!loading && recipes.map(({ recipe }, index) => (<RecipeCard key={index} recipe={recipe} 
-          {...getRandomColor()}
-          />))}
+          {!loading && recipes.map(({ recipe }, index) => (
+            <RecipeCard key={index} recipe={recipe} 
+          {...getRandomColor()}          />
+          ))}
 
           {loading &&
             [...Array(9)].map((_, index) => (
